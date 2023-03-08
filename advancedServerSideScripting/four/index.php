@@ -16,21 +16,29 @@
             text-align: center;
             background:black;
         }
-        table,tr,td,th{
-            border: 1px solid black;
-            width: 100%;
-            text-align: left;
-            padding: 10px;
-            border-collapse: collapse;
-        }
-        .id_display{
-            width: 10%;
-        }
+        
         .result_container{
             margin-top: 10px;
             width: 500px;
             margin: 0 auto;
         }
+        table{
+            width: 100%;
+        }
+        table,tr,td,th{
+            border:1px solid black;
+            border-collapse: collapse;
+        }
+        td,th{
+            padding: 10px 0px;
+        }
+        .id_display{
+            width: 10%;
+        }
+        .date_display{
+            width: 50%;
+        }
+        
     </style>
 </head>
 <body>
@@ -45,7 +53,7 @@
         <tr>
             <th class="id_display" >Id</th>
             <th  >Thought</th>
-            <th>Date</th>
+            <th class="date_display" >Date</th>
         </tr>
         <?php require('./dbconnection.php');
 
@@ -57,7 +65,7 @@
                     echo "<tr>
                             <td class='id_display'>{$row["id"]}</td>
                             <td>{$row["thought"]}</td>
-                            <td>{$row["createdAt"]}</td>
+                            <td class='date_display'>{$row["createdAt"]}</td>
                         </tr>";
                 }
             }
