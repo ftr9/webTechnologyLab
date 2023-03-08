@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      input[type='text'],
+      input[type='email'],
+      button {
+        display: block;
+        width: 100%;
+        padding: 10px 5px;
+        margin-bottom: 10px;
+      }
+      #form {
+        width: 300px;
+        margin: 0 auto;
+      }
+      .err {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <form id="form">
+      <h1>Question No:3</h1>
+
+      <div class="err" id="fullname_err"></div>
+      <input
+        type="text"
+        id="fullname"
+        name="fullname"
+        placeholder="Enter FullName"
+      />
+
+      <div class="err" id="address_err"></div>
+      <input
+        type="text"
+        id="address"
+        name="address"
+        placeholder="Enter Address"
+      />
+
+      <div class="err" id="email_err"></div>
+      <input type="email" placeholder="Enter Email" id="email" name="email" />
+
+      <div>
+        <div class="err" id="gender_err"></div>
+        <p>Select gender</p>
+        <label for="male">Male</label>
+        <input
+          class="gender_input"
+          type="radio"
+          name="gender"
+          value="male"
+          id="male"
+        />
+
+        <label for="female">Female</label>
+        <input
+          class="gender_input"
+          type="radio"
+          name="gender"
+          value="female"
+          id="female"
+        />
+
+        <label for="others">Others</label>
+        <input
+          class="gender_input"
+          type="radio"
+          name="gender"
+          value="others"
+          id="others"
+        />
+      </div>
+
+      <div class="err" id="contactNumber_err"></div>
+      <input
+        type="text"
+        name="contactNumber"
+        id="contactNumber"
+        placeholder="Enter you contact number"
+      />
+
+      <div class="err" id="citizenshipNumber_err"></div>
+      <input
+        type="text"
+        name="citizenshipNumber"
+        id="citizenshipNumber"
+        placeholder="Enter citizenship number"
+      />
+
+      <div class="err" id="fathersName_err"></div>
+      <input
+        type="text"
+        name="fathersName"
+        id="fathersName"
+        placeholder="Enter father's name"
+      />
+
+      <button type="submit">submit</button>
+      <button type="reset">reset</button>
+    </form>
+
+    <script>
+      const form = document.getElementById('form');
+      const formFields = {
+        hasFormFieldError: false,
+        fullName: {
+          inputField: document.getElementById('fullname'),
+          errField: document.getElementById('fullname_err'),
+        },
+        address: {
+          inputField: document.getElementById('address'),
+          errField: document.getElementById('address_err'),
+        },
+        email: {
+          inputField: document.getElementById('email'),
+          errField: document.getElementById('email_err'),
+        },
+        gender: {
+          inputField: document.getElementsByClassName('gender_input'),
+          errField: document.getElementById('gender_err'),
+        },
+        contactNum: {
+          inputField: document.getElementById('contactNumber'),
+          errField: document.getElementById('contactNumber_err'),
+        },
+        citizenshipNum: {
+          inputField: document.getElementById('citizenshipNumber'),
+          errField: document.getElementById('citizenshipNumber_err'),
+        },
+        fathersName: {
+          inputField: document.getElementById('fathersName'),
+          errField: document.getElementById('fathersName_err'),
+        },
+      };
+
+      const checkEmptyFieldAndSetErr = (formField, errText) => {
+        if (!formField.inputField.value) {
+          formFields.hasFormFieldError = true;
+          formField.errField.textContent = errText;
+        } else {
+          formFields.hasFormFieldError = false;
+          formField.errField.textContent = '';
+        }
+      };
+      const checkValidFieldAndSetErr = (formField, errText, pattern) => {
+        if (!pattern.test(formField.inputField.value)) {
+          formFields.hasFormFieldError = true;
+          formField.errField.textContent = errText;
+        } else {
+          formFields.hasFormFieldError = false;
+          formField.errField.textContent = '';
+        }
+      };
+
+      form.addEventListener('submit', e => {
+        e.preventDefault();
+
+        //1.fullname
+        checkEmptyFieldAndSetErr(
+          formFields.fullName,
+          '* please enter fullName'
+        );
+
+        //2.address
+        checkEmptyFieldAndSetErr(formFields.address, '* please Enter address');
+
+        //3.email
+        const emailRegEx = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+        checkValidFieldAndSetErr(
+          formFields.email,
+          '* please enter valid email address',
+          emailRegEx
+        );
+
+        //4.gender
+        for (let genderInputField of formFields.gender.inputField) {
+          if (genderInputField.checked) {
+            formFields.gender.errField.textContent = '';
+            break;
+          } else {
+            formFields.gender.errField.textContent =
+              '* please select your gender';
+          }
+        }
+
+        //5 contactNumber
+        const phoneNumRegEx =
+          /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/;
+        checkValidFieldAndSetErr(
+          formFields.contactNum,
+          '* please enter valid phone number',
+          phoneNumRegEx
+        );
+
+        //6.citizenship number
+        checkEmptyFieldAndSetErr(
+          formFields.citizenshipNum,
+          '* please enter citizenship number'
+        );
+
+        //7 fathersname
+        checkEmptyFieldAndSetErr(
+          formFields.fathersName,
+          '* please enter fathers name'
+        );
+
+        //final check
+        if (!formFields.hasFormFieldError) {
+          alert('form is valid..');
+        }
+      });
+    </script>
+  </body>
+</html>

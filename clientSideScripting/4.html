@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h3 class="sum_result"></h3>
+
+    <script>
+      const resultContainer = document.querySelector('.sum_result');
+      const num1 = Number(prompt('Enter first number'));
+      const num2 = Number(prompt('Enter second  number'));
+
+      const sum = num1 + num2;
+      if (isNaN(sum)) {
+        alert('please enter valid number');
+      } else {
+        resultContainer.textContent = `the sum of ${num1} and ${num2} is ${sum}`;
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,15 @@
+
+<!DOCTYPE Student [
+    <!ELEMENT Student (name,address,email,contact)>
+    <!ELEMENT name (#PCDATA)>
+    <!ELEMENT address (#PCDATA)>
+    <!ELEMENT email (#PCDATA)>
+    <!ELEMENT contact (#PCDATA)>
+]>
+
+<Student>
+    <name>rahul</name>
+    <address>pepsicola</address>
+    <email>letodluhar16@gmail.com</email>
+    <contact>9828041958</contact>
+</Student>

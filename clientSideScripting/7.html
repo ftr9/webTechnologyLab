@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Even or Odd checker</h1>
+    <input id="numberField" type="number" placeholder="Enter the number" />
+    <button id="checkBtn">check</button>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"
+      integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script>
+      const checkBtn = $('#checkBtn');
+      const numberInputField = $('#numberField');
+
+      checkBtn.on('click', e => {
+        if (parseInt(numberInputField.val()) % 2 === 0) {
+          alert('the number is even');
+        } else {
+          alert('the number is odd');
+        }
+      });
+    </script>
+  </body>
+</html>
